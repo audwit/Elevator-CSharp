@@ -12,10 +12,8 @@ namespace Elevator_CSharp
         */
 
         ElevatorMain elevator1 = null;
-        int CurrentFloor;
-        int TopFloor = 0;
         int DestinationFloor = 0;
-        bool DoorState;
+        //bool DoorState;
         public void Initialize(int startingFloor, bool initialDoorState, int topFloor)
         {
             
@@ -25,15 +23,13 @@ namespace Elevator_CSharp
 
         public int GetCurrentFloor()
         {
-            CurrentFloor = elevator1.GetCurrentFloor();
-            return CurrentFloor;
+            return elevator1.GetCurrentFloor();
             //throw new NotImplementedException();
         }
 
         public bool AreDoorsOpen()
         {
-            DoorState = elevator1.getDoorState();
-            return DoorState;
+            return elevator1.getDoorState();
             //throw new NotImplementedException();
         }
 
@@ -58,20 +54,20 @@ namespace Elevator_CSharp
                     elevator1.setDoorState(false);
             }
             // Elevator is on the destination floor and the door is closed --> open the door
-            else if (currentFloor == DestinationFloor && DoorState == false)
+            else if (currentFloor == DestinationFloor && elevator1.getDoorState() == false)
                 elevator1.setDoorState(true);
             // Elevator door needs to be closed as Elevator has reached destination floor and the door is open --> Close door
-            else if (currentFloor == DestinationFloor && DoorState == true)
+            else if (currentFloor == DestinationFloor && elevator1.getDoorState() == true)
                 elevator1.setDoorState(false);
             //throw new NotImplementedException();
         }
 
         public void RequestPickup(int floor)
         {
-            int currentState = 0;
-            int currentFloor = 0;
-            currentState = elevator1.getCurrentState();
-            currentFloor = elevator1.GetCurrentFloor();
+            //int currentState = 0;
+            //int currentFloor = 0;
+            //currentState = elevator1.getCurrentState();
+            //currentFloor = elevator1.GetCurrentFloor();
             DestinationFloor = floor;
 
             // When The Elevator is idle and someone from the same floor requests pickup ---> Simply open the door (Assuming doorstate false means closed and true means open) 
