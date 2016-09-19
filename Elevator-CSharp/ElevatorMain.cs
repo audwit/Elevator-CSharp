@@ -7,7 +7,7 @@
         private int CurrentFloor = 0;
         private int CurrentState = (int)ElevatorState.Idle;
         private bool DoorState;
-
+        private int TopFloor;
         public int GetCurrentFloor()
         {
             return CurrentFloor;
@@ -32,12 +32,20 @@
         {
             DoorState = doorState;
         }
-        
-        public ElevatorMain(int currentFloor, int currentState, bool doorState)
+        public int getTopFloor()
         {
-            CurrentFloor = 0;
+            return TopFloor;
+        }
+        public void setTopFloor(int topFloor)
+        {
+            TopFloor = topFloor;
+        }
+        public ElevatorMain(int currentFloor, bool doorState, int topFloor)
+        {
             CurrentState = (int)ElevatorState.Idle;
-            DoorState = false;
+            CurrentFloor = currentFloor;
+            DoorState = doorState;
+            TopFloor = topFloor;
         }
 
         public static void Main(string[] args) {
