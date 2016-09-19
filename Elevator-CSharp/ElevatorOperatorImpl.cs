@@ -49,7 +49,7 @@ namespace Elevator_CSharp
                 Elevator1.CurrentState = (int)ElevatorMain.ElevatorState.Up;
                 Elevator1.CurrentFloor++;
                 if (Elevator1.CurrentFloor < DestinationFloor)
-                    Elevator1.DoorState = false;
+                    Elevator1.DoorState = false; // Since the Elevator is still going up door should be closed
             }
             // Elevator going down
             if (Elevator1.CurrentFloor > DestinationFloor)
