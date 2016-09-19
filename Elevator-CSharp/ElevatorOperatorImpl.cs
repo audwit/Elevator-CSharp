@@ -11,21 +11,14 @@ namespace Elevator_CSharp
         int globCurrentFloor;
         */
 
-        ElevatorMain Elevator1 = new ElevatorMain();
+        ElevatorMain Elevator1 = null;
+        int TopFloor=0;
         int DestinationFloor = 0;
         public void Initialize(int startingFloor, bool initialDoorState, int topFloor)
         {
             
-
-            /*globStartingFloor = startingFloor;
-            globIntialDoorState = initialDoorState; 
-            globTopFloor = topFloor;
-            globCurrentFloor = startingFloor;*/
-
-            //Setting the Elevator Objects current floor and doorstate and Elevator state
-            Elevator1.CurrentFloor = startingFloor;
-            Elevator1.DoorState = initialDoorState;
-            Elevator1.CurrentState = (int)ElevatorMain.ElevatorState.Idle;
+            ElevatorMain Elevator1 = new ElevatorMain(startingFloor,(int)ElevatorMain.ElevatorState.Idle,initialDoorState);  //public ElevatorMain(int currentFloor, int currentState, bool doorState)
+            
             //throw new NotImplementedException();
         }
 
@@ -37,33 +30,39 @@ namespace Elevator_CSharp
 
         public bool AreDoorsOpen()
         {
-            return Elevator1.DoorState;
+            return Elevator1.getDoorState();
             //throw new NotImplementedException();
         }
 
         public void Step()
         {
+            int currentFloor = Elevator1.GetCurrentFloor();
             // Elevator going up
-            if (Elevator1.CurrentFloor < DestinationFloor)
+            if (currentFloor < DestinationFloor)
             {
-                Elevator1.CurrentState = (int)ElevatorMain.ElevatorState.Up;
-                Elevator1.CurrentFloor++;
-                if (Elevator1.CurrentFloor < DestinationFloor)
-                    Elevator1.DoorState = false; // Since the Elevator is still going up door should be closed
+                Elevator1.setCurrentState((int)ElevatorMain.ElevatorState.Up);
+                Elevator1.SetCurrentFloor(currentFloor++);
+                if (currentFloor < DestinationFloor)
+                    Elevator1.setDoorState(false); // Since the Elevator is still going up door should be closed
             }
             // Elevator going down
-            if (Elevator1.CurrentFloor > DestinationFloor)
-                Elevator1.CurrentState = (int)ElevatorMain.ElevatorState.Down;
+            if (currentFloor > DestinationFloor)
+                Elevator1.setCurrentState((int)ElevatorMain.ElevatorState.Down);
             //throw new NotImplementedException();
         }
 
         public void RequestPickup(int floor)
         {
+            int currentState = 0;
+            int currentFloor = 0;
+            currentState = Elevator1.getCurrentState();
+            currentFloor = Elevator1.GetCurrentFloor();
             // When The Elevator is idle and someone from the same floor requests pickup ---> Simply open the door (Assuming doorstate false means closed and true means open) 
-            if (Elevator1.CurrentState == (int)ElevatorMain.ElevatorState.Idle && Elevator1.CurrentFloor == floor)
-                Elevator1.DoorState = true;
+            if (currentState == (int)ElevatorMain.ElevatorState.Idle && currentFloor == floor)
+                Elevator1.setDoorState(true);
             //When Elevator is going up and someone from up requests pickup
-
+            else if(currentState == (int)ElevatorMain.ElevatorState.Up && currentFloor < floor)  // Start thinking from here ..... Such a case is not mentioned in the test case
+                
             //throw new NotImplementedException();
         }
 
