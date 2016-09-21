@@ -1,54 +1,60 @@
-﻿namespace Elevator_CSharp
+﻿using System.Collections.Generic;
+namespace Elevator_CSharp
 {
     class ElevatorMain
     {
         public enum ElevatorState { Idle = 0, Up = 1, Down = 1 };
 
-        private int CurrentFloor = 0;
-        private int CurrentState = (int)ElevatorState.Idle;
-        private bool DoorState;
-        private int TopFloor;
+        private int _currentFloor;
+        private int _currentState;
+        private bool _doorState;
+        private int _topFloor;
+
+        public ElevatorMain(int currentFloor, bool doorState, int topFloor)
+        {
+            _currentState = (int)ElevatorState.Idle;
+            _currentFloor = currentFloor;
+            _doorState = doorState;
+            _topFloor = topFloor;
+        }
+
         public int GetCurrentFloor()
         {
-            return CurrentFloor;
+            return _currentFloor;
         }
         public void SetCurrentFloor(int currentFloor)
         {
-            CurrentFloor = currentFloor;
+            _currentFloor = currentFloor;
         }
-        public int getCurrentState()
+        public int GetCurrentState()
         {
-            return CurrentState;
+            return _currentState;
         }
-        public void setCurrentState(int currentState)
+        public void SetCurrentState(int currentState)
         {
-            CurrentState = currentState;
+            _currentState = currentState;
         }
-        public bool getDoorState()
+        public bool GetDoorState()
         {
-            return DoorState;
+            return _doorState;
         }
-        public void setDoorState(bool doorState)
+        public void SetDoorState(bool doorState)
         {
-            DoorState = doorState;
+            _doorState = doorState;
         }
-        public int getTopFloor()
+        public int GetTopFloor()
         {
-            return TopFloor;
+            return _topFloor;
         }
-        public void setTopFloor(int topFloor)
+        public void SetTopFloor(int topFloor)
         {
-            TopFloor = topFloor;
-        }
-        public ElevatorMain(int currentFloor, bool doorState, int topFloor)
-        {
-            CurrentState = (int)ElevatorState.Idle;
-            CurrentFloor = currentFloor;
-            DoorState = doorState;
-            TopFloor = topFloor;
+            _topFloor = topFloor;
         }
 
-        public static void Main(string[] args) {
+
+
+        public static void Main(string[] args)
+        {
             // Logic is exercised via the unit tests.
         }
     }

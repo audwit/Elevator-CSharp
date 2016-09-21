@@ -55,5 +55,15 @@ namespace ElevatorTests
             elevatorOp.Step();
             Assert.IsFalse(elevatorOp.AreDoorsOpen());
         }
+
+        [TestMethod]
+        public void MyTests()
+        {
+            IElevatorOperator elevatorOp = new ElevatorOperatorImpl();
+            elevatorOp.Initialize(7, true, 10);  // What should happen if the elevator object is initialized with doorstate true/door open
+            elevatorOp.Step();
+            Assert.IsFalse(elevatorOp.AreDoorsOpen());
+            elevatorOp.RequestPickup(6);
+        }
     }
 }
